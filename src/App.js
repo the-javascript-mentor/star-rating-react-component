@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
-function App() {
+const Star = ({ onClick, isHighlighted }) => (
+  <button onClick={onClick} className={isHighlighted ? "highlighted" : ""}>
+    ★
+  </button>
+);
+
+const StarRatingInput = () => {
+  const [stars, setStars] = useState(1);
+  console.log(stars);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="starRatingInput">
+      <Star onClick={() => setStars(1)} isHighlighted={stars >= 1} />
+      <Star onClick={() => setStars(2)} isHighlighted={stars >= 2} />
+      <Star onClick={() => setStars(3)} isHighlighted={stars >= 3} />
+      <Star onClick={() => setStars(4)} isHighlighted={stars >= 4} />
+      <Star onClick={() => setStars(5)} isHighlighted={stars >= 5} />
     </div>
   );
-}
+};
 
-export default App;
+export default StarRatingInput;
